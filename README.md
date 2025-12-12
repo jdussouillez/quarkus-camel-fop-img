@@ -14,8 +14,8 @@ java -jar target/quarkus-app/quarkus-run.jar
 ### Test
 
 ```sh
-curl -s http://localhost:8081/pdf -o jar.pdf
-curl -s http://localhost:8081/pdf/img -o jar-img.pdf
+curl -s -f http://localhost:8081/pdf -o jar.pdf || echo "Failed to generate"
+curl -s -f http://localhost:8081/pdf/img -o jar-img.pdf || echo "Failed to generate"
 ```
 
 ## Native mode
@@ -30,6 +30,6 @@ curl -s http://localhost:8081/pdf/img -o jar-img.pdf
 ### Run
 
 ```sh
-curl -s http://localhost:8081/pdf -o native.pdf
-curl -s http://localhost:8081/pdf/img -o native-img.pdf
+curl -s -f http://localhost:8081/pdf -o native.pdf || echo "Failed to generate"
+curl -s -f http://localhost:8081/pdf/img -o native-img.pdf || echo "Failed to generate"
 ```
