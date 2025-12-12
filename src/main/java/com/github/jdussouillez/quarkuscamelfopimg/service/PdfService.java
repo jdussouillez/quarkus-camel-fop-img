@@ -5,9 +5,6 @@ import jakarta.inject.Inject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.Map;
 import org.apache.camel.CamelExecutionException;
 import org.apache.camel.ProducerTemplate;
@@ -18,9 +15,8 @@ public class PdfService {
     @Inject
     protected ProducerTemplate producerTemplate;
 
-    public void generate(final File xsl, final File xml, final String output) throws IOException {
-        var file = Files.createFile(Path.of(".", output));
-        Files.write(file, generatePdf(generateFopXml(xsl, xml)), StandardOpenOption.TRUNCATE_EXISTING);
+    public byte[] generate(final File xsl, final File xml) throws IOException {
+        return generatePdf(generateFopXml(xsl, xml));
     }
 
     protected String generateFopXml(final File xsl, final File xml) throws IOException {
