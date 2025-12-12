@@ -2,6 +2,8 @@
 
 Project to reproduce a bug with images when generating PDF files using FOP with Apache Camel run by Quarkus.
 
+Related issue: https://github.com/apache/camel-quarkus/issues/8067
+
 ## Documentation
 
 ### JAR mode
