@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.version>3.31.2</quarkus.platform.version>
-        <quarkus.camel.version>3.30.0</quarkus.camel.version>
+        <quarkus.camel.version>3.31.0</quarkus.camel.version>
     </properties>
 
     <dependencyManagement>
