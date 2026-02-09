@@ -1,0 +1,128 @@
+{
+    "reflection": [
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.accessibility.AccessibilityEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.afp.AFPEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.area.AreaEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.fo.flow.table.TableEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.fo.FOValidationEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.fonts.FontEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.layoutmgr.BlockLevelEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.layoutmgr.inline.InlineLevelEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.render.bitmap.BitmapRendererEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.render.pcl.PCLEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.render.pdf.PDFEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.render.pdf.extensions.PDFExtensionEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.render.ps.PSEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.render.RendererEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.render.rtf.RTFEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.ResourceEventProducer"
+                ]
+            }
+        },
+        {
+            "type": {
+                "proxy": [
+                    "org.apache.fop.svg.SVGEventProducer"
+                ]
+            }
+        }
+    ],
+    "serialization": [
+        {
+            "type": "org.apache.fop.fonts.FontCache"
+        }
+    ]
+}
