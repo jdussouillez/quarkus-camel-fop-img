@@ -1,5 +1,9 @@
 package com.github.jdussouillez.quarkuscamelfopimg;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.Map;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.apache.camel.ProducerTemplate;
@@ -7,37 +11,30 @@ import org.apache.camel.ProducerTemplate;
 @ApplicationScoped
 public class PdfService {
 
+    private static final String DATA_DIR = "src/main/resources/pdf";
+
     @Inject
     protected ProducerTemplate producerTemplate;
 
     public byte[] generate(final boolean includeImg) {
-        return producerTemplate.requestBody("fop:application/pdf", generateFopXml(includeImg), byte[].class);
+        return generatePdf(generateFopXml(includeImg));
     }
 
     private String generateFopXml(final boolean includeImg) {
-        return """
-            <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
-                <fo:layout-master-set>
-                    <fo:simple-page-master master-name="A4" page-height="29.7cm" page-width="21cm">
-                        <fo:region-body/>
-                    </fo:simple-page-master>
-                </fo:layout-master-set>
-                <fo:page-sequence master-reference="A4">
-                    <fo:flow flow-name="xsl-region-body">
-                        <fo:block font-size="14pt" font-family="serif">Hello, World!</fo:block>
-                        <fo:block>%s</fo:block>
-                    </fo:flow>
-                </fo:page-sequence>
-            </fo:root>
-            """.formatted(includeImg ? generateImg() : "no img");
+        var xmlFile = new File(DATA_DIR, "data.xml");
+        try (var xsl = new FileInputStream(new File(DATA_DIR, "template.xsl"))) {
+            Map<String, Object> headers = Map.of(
+                "CamelXsltStylesheet", xsl,
+                "includeImg", String.valueOf(includeImg)
+            );
+            return producerTemplate.requestBodyAndHeaders(
+                "xslt-saxon?contentCache=false&allowTemplateFromHeader=true", xmlFile, headers, String.class);
+        } catch (Exception ex) {
+            throw new RuntimeException("Error generating FOP XML", ex);
+        }
     }
 
-    private String generateImg() {
-        return """
-            <fo:external-graphic
-                content-width="150pt"
-                content-height="150pt"
-                src="url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==')"/>
-            """;
+    private byte[] generatePdf(final String fopXml) {
+        return producerTemplate.requestBody("fop:application/pdf", fopXml, byte[].class);
     }
 }

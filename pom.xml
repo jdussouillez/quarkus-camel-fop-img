@@ -43,6 +43,12 @@
             <artifactId>quarkus-rest</artifactId>
         </dependency>
 
+        <!-- Camel XSLT Saxon -->
+        <dependency>
+            <groupId>org.apache.camel.quarkus</groupId>
+            <artifactId>camel-quarkus-xslt-saxon</artifactId>
+        </dependency>
+
         <!-- Camel FOP -->
         <dependency>
             <!-- FOP version: https://github.com/apache/camel-quarkus/blob/3.30.0/pom.xml#L175 -->
